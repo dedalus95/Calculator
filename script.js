@@ -49,9 +49,9 @@ function subtract(a,b) {
  const display = document.querySelector('#display');
 
 
-one.addEventListener('click', function() {
-   
-        display.textContent = '1';
+one.addEventListener('click', function(e) {
+    
+    display.textContent = '1';
 
 });
 
