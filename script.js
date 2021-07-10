@@ -20,7 +20,8 @@ const zero = document.querySelector('#zero');
 const clear = document.querySelector('#clear');
 
 
-const digits = document.querySelectorAll('#digits button').forEach(button => 
+const digits = document.querySelectorAll('#digits button');
+digits.forEach(button => 
     button.addEventListener('mousedown', function(e) {
         if(e.target === one) {
             display.textContent = display.textContent.concat(1);
@@ -63,6 +64,10 @@ const digits = document.querySelectorAll('#digits button').forEach(button =>
      {display.textContent = display.textContent.concat(e.key);}
  });
 
+
+
+// addition code
+
 let firstNumber;
 let secondNumber;
 
@@ -85,12 +90,60 @@ plus.addEventListener('mousedown', function() {
                 console.log(firstNumber, secondNumber);
                 display.textContent = '';
                  display.textContent = parseInt(firstNumber) + parseInt(secondNumber);
+                 if(clear) {
+                    firstNumber = 0;
+                    secondNumber = 0;
+
+                 }
+
+                 
             }
             add();
         });
 
     }
     operate();
+});
+
+
+
+// multiplication code
+
+let firstNumber1 ;
+let secondNumber1 ;
+
+per.addEventListener('mousedown', function() {
+    firstNumber1 = display.textContent;
+    console.log('firstNumber is ' + firstNumber1);
+
+    if(per) {
+        display.textContent = '';
+        
+    }
+
+    function operate1() {
+        secondNumber1 = display.textContent;
+        console.log(secondNumber1);
+        equal.addEventListener('mousedown', function(){
+            secondNumber1 = display.textContent;
+            console.log('secondNumber is ' + secondNumber1);
+            function multiply() {
+                console.log(firstNumber1, secondNumber1);
+                display.textContent = '';
+                let result = parseInt(firstNumber1) * parseInt(secondNumber1);
+                display.textContent = result;
+                console.log('result is '+ result);
+                 
+                //  secondNumber1 = firstNumber1;
+                //  if(clear) {
+                //     secondNumber1 = firstNumber1;                
+                //      }
+                 }
+            multiply();
+        });
+
+    }
+    operate1();
 });
 
 
@@ -105,10 +158,10 @@ function subtract(a,b) {
     return a-b;
  }
  
- function multiply(a,b) {
+//  function multiply(a,b) {
 
-    return a*b;
- }
+//     return a*b;
+//  }
 
  function divide(a,b) {
     return a/b;
