@@ -70,12 +70,6 @@ digits.forEach(button =>
 
 //try experiment
 
-let firstNumber;
-let secondNumber;
-
-
-
-
 
 
 
@@ -115,30 +109,35 @@ function operate(a, operator, b) {
 }
 
 
-
+let a = parseInt(display.textContent);
+let b = parseInt(display.textContent);
 
 
 
 operators.forEach(operator => operator.addEventListener('mousedown', function() {
-    let  a = display.textContent;
-
-    console.log('a is ' + a);
-
+  
+  
+  
     if(plus) {
+        a = parseInt(display.textContent);
+        console.log('first number is ' + a);
         display.textContent = '';
-        let e;
-        
-        let b = display.textContent;    
-        equal.addEventListener('mousedown', function(){
-            
-            
+    
+       
+   
 
-            console.log('b is ' + b);
+
+
+       equal.addEventListener('mousedown', function(){
+        b = parseInt(display.textContent);
+        
+            console.log('second number is ' + b)
+
             return display.textContent = operate(a,plus,b);
 
         });
-    };
-        
+    
+    }  
         
 }));
     
