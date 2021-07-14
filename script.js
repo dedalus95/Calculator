@@ -21,22 +21,7 @@ const clear = document.querySelector('#clear');
 
 
 const operators = document.querySelectorAll('#operators button');
-operators.forEach(button => 
-    button.addEventListener('mousedown', function(e) {
-        if(e.target === plus) {
-            display.textContent = display.textContent.concat('+');
-        }
-        if(e.target === minus) {
-            display.textContent = display.textContent.concat('-');
-        }
-        if(e.target === per) {
-            display.textContent = display.textContent.concat('x');
-        }
-        if(e.target === division) {
-            display.textContent = display.textContent.concat(':');
-        }
-    
-    }));
+
 
 
 const digits = document.querySelectorAll('#digits button');
@@ -90,17 +75,6 @@ let secondNumber;
 
 
 
-function a() {
-    let a = display.textContent;
-
-    if (plus) {
-        b = display.textContent;
-        return display.textContent = operate(a,plus,b);
-    }
-}
-
-
-
 
 
 
@@ -145,45 +119,43 @@ function operate(a, operator, b) {
 
 
 
+operators.forEach(operator => operator.addEventListener('mousedown', function() {
+    let  a = display.textContent;
 
+    console.log('a is ' + a);
 
-// addition code
-
-// let firstNumber;
-// let secondNumber;
-
-// plus.addEventListener('mousedown', function() {
-//     firstNumber = display.textContent;
-//     console.log('firstNumber is ' + firstNumber);
-
-//     if(plus) {
-//         display.textContent = '';
+    if(plus) {
+        display.textContent = '';
+        let e;
         
-//     }
+        let b = display.textContent;    
+        equal.addEventListener('mousedown', function(){
+            
+            
 
-//     function operate() {
-//         secondNumber = display.textContent;
-//         equal.addEventListener('mousedown', function(){
-//             secondNumber = display.textContent;
-//             // console.log('secondNumber is ' + secondNumber);
-//             function add() {
-//                 console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
-//                 display.textContent = '';
-//                  display.textContent = parseInt(firstNumber) + parseInt(secondNumber);
-//                  if(clear) {
-//                     firstNumber = 0;
-//                     secondNumber = 0;
+            console.log('b is ' + b);
+            return display.textContent = operate(a,plus,b);
 
-//                  }
+        });
+    };
+        
+        
+}));
+    
 
-                 
-//             }
-//             add();
-//         });
 
-//     }
-//     operate();
-// });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -297,51 +269,3 @@ function operate(a, operator, b) {
 //     }
 //     operate();
 // });
-
-
-// function add() {
-//     display.textContent = '';
-//     return display.content = firstNumber + secondNumber;
-    
-  
-// }
-// function subtract(a,b) {
-//     return a-b;
-//  }
- 
-//  function multiply(a,b) {
-
-//     return a*b;
-//  }
-
-//  function divide(a,b) {
-//     return a/b;
-//  }
-
-
- 
-
-//  function operate (a,operator,b) {
-
-    
-//     if (plus) {
-
-//         secondNumber = display.textContent;
-//         equal.addEventListener('mousedown', add);
-//     }
-
-//     if(operator === minus) {
-//         return subtract(a,b);
-//     }
-
-//     if(operator === per) {
-//         return multiply(a,b);
-//     }
-
-//     if(operator === division) {
-//         return divide(a,b);
-//     }
-        
-    
-//  }
-
