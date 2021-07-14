@@ -81,7 +81,7 @@ plus.addEventListener('mousedown', function() {
     }
 
     function operate() {
-        secondNumber = display.textContent;
+        // secondNumber = display.textContent;
         equal.addEventListener('mousedown', function(){
             secondNumber = display.textContent;
             // console.log('secondNumber is ' + secondNumber);
@@ -89,12 +89,8 @@ plus.addEventListener('mousedown', function() {
                 console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
                 display.textContent = '';
                  display.textContent = parseInt(firstNumber) + parseInt(secondNumber);
-                 if(clear) {
-                    firstNumber = 0;
-                    secondNumber = 0;
-
-                 }
-
+                 firstNumber=0;
+                 secondNumber=0;
                  
             }
             add();
@@ -108,8 +104,6 @@ plus.addEventListener('mousedown', function() {
 
 // multiplication code
 
-let firstNumber1 ;
-let secondNumber1 ;
 
 per.addEventListener('mousedown', function() {
     firstNumber = display.textContent;
@@ -133,10 +127,8 @@ per.addEventListener('mousedown', function() {
                 display.textContent = result;
                 console.log('result is '+ result);
                  
-                //  secondNumber1 = firstNumber1;
-                //  if(clear) {
-                //     secondNumber1 = firstNumber1;                
-                //      }
+                firstNumber=1;
+                secondNumber=1;
                  }
             multiply();
         });
@@ -202,11 +194,11 @@ division.addEventListener('mousedown', function() {
                 console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
                 display.textContent = '';
                  display.textContent = parseInt(firstNumber) / parseInt(secondNumber);
-                 if(clear) {
-                    firstNumber = 0;
-                    secondNumber = 0;
+                 
+                    firstNumber = 2;
+                    secondNumber = 2;
 
-                 }
+                 
 
                  
             }
