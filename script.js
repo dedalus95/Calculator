@@ -82,12 +82,11 @@ plus.addEventListener('mousedown', function() {
 
     function operate() {
         secondNumber = display.textContent;
-        console.log(secondNumber);
         equal.addEventListener('mousedown', function(){
             secondNumber = display.textContent;
-            console.log('secondNumber is ' + secondNumber);
+            // console.log('secondNumber is ' + secondNumber);
             function add() {
-                console.log(firstNumber, secondNumber);
+                console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
                 display.textContent = '';
                  display.textContent = parseInt(firstNumber) + parseInt(secondNumber);
                  if(clear) {
@@ -113,24 +112,24 @@ let firstNumber1 ;
 let secondNumber1 ;
 
 per.addEventListener('mousedown', function() {
-    firstNumber1 = display.textContent;
-    console.log('firstNumber is ' + firstNumber1);
+    firstNumber = display.textContent;
+    // console.log('firstNumber is ' + firstNumber1);
 
     if(per) {
         display.textContent = '';
         
     }
 
-    function operate1() {
-        secondNumber1 = display.textContent;
-        console.log(secondNumber1);
+    function operate() {
+        // secondNumber1 = display.textContent;
+        // console.log(secondNumber1);
         equal.addEventListener('mousedown', function(){
-            secondNumber1 = display.textContent;
-            console.log('secondNumber is ' + secondNumber1);
+            secondNumber = display.textContent;
+            // console.log('secondNumber is ' + secondNumber1);
             function multiply() {
-                console.log(firstNumber1, secondNumber1);
+                console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
                 display.textContent = '';
-                let result = parseInt(firstNumber1) * parseInt(secondNumber1);
+                let result = parseInt(firstNumber) * parseInt(secondNumber);
                 display.textContent = result;
                 console.log('result is '+ result);
                  
@@ -143,9 +142,80 @@ per.addEventListener('mousedown', function() {
         });
 
     }
-    operate1();
+    operate();
 });
 
+
+//SUBTRACTION CODE 
+
+minus.addEventListener('mousedown', function() {
+    firstNumber = display.textContent;
+    console.log('firstNumber is ' + firstNumber);
+
+    if(minus) {
+        display.textContent = '';
+        
+    }
+
+    function operate() {
+        secondNumber = display.textContent;
+        equal.addEventListener('mousedown', function(){
+            secondNumber = display.textContent;
+            // console.log('secondNumber is ' + secondNumber);
+            function subtract() {
+                console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
+                display.textContent = '';
+                 display.textContent = parseInt(firstNumber) - parseInt(secondNumber);
+                 if(clear) {
+                    firstNumber = 0;
+                    secondNumber = 0;
+
+                 }
+
+                 
+            }
+            subtract();
+        });
+
+    }
+    operate();
+});
+
+
+//DIVISION CODE
+
+division.addEventListener('mousedown', function() {
+    firstNumber = display.textContent;
+    console.log('firstNumber is ' + firstNumber);
+
+    if(division) {
+        display.textContent = '';
+        
+    }
+
+    function operate() {
+        secondNumber = display.textContent;
+        equal.addEventListener('mousedown', function(){
+            secondNumber = display.textContent;
+            // console.log('secondNumber is ' + secondNumber);
+            function divide() {
+                console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
+                display.textContent = '';
+                 display.textContent = parseInt(firstNumber) / parseInt(secondNumber);
+                 if(clear) {
+                    firstNumber = 0;
+                    secondNumber = 0;
+
+                 }
+
+                 
+            }
+            divide();
+        });
+
+    }
+    operate();
+});
 
 
 // function add() {
@@ -154,18 +224,18 @@ per.addEventListener('mousedown', function() {
     
   
 // }
-function subtract(a,b) {
-    return a-b;
- }
+// function subtract(a,b) {
+//     return a-b;
+//  }
  
 //  function multiply(a,b) {
 
 //     return a*b;
 //  }
 
- function divide(a,b) {
-    return a/b;
- }
+//  function divide(a,b) {
+//     return a/b;
+//  }
 
 
  
@@ -193,93 +263,4 @@ function subtract(a,b) {
         
     
 //  }
-
-
-// one.addEventListener('click', function(e) {
-//     console.log(e.target.textContent);
-// });
-
-// two.addEventListener('click', function(e) {
-//     console.log(e.target.textContent);
-// });
-
-
-
-
-// digits.addEventListener('mousedown', function(e) {
-//     if(e.target === one) {
-//         display.textContent = display.textContent.concat(1);
-//     }
-//     if(e.target === two) {
-//         display.textContent = display.textContent.concat(2);
-//     }
-
-
-
-// });
-
-
-
-// one.addEventListener('mousedown', function() {
-    
-//     display.textContent = display.textContent.concat(1);
-    
- 
-//  });
- 
-//  two.addEventListener('mousedown', function() {
-    
-//    display.textContent = display.textContent.concat(2);
- 
-//  });
- 
-//  three.addEventListener('mousedown', function() {
-    
-//      display.textContent = display.textContent.concat(3);
- 
-//  });
- 
-//  four.addEventListener('mousedown', function() {
-    
-//      display.textContent = display.textContent.concat(4);
- 
-//  });
- 
-//  five.addEventListener('mousedown', function() {
-    
-//      display.textContent = display.textContent.concat(5);
- 
-//  });
- 
-//  six.addEventListener('mousedown', function() {
-    
-//      display.textContent = display.textContent.concat(6);
- 
-//  });
- 
-//  seven.addEventListener('mousedown', function() {
-    
-//      display.textContent = display.textContent.concat(7);
- 
-//  });
- 
-//  eight.addEventListener('mousedown', function() {
-    
-//      display.textContent = display.textContent.concat(8);
- 
-//  });
- 
-//  nine.addEventListener('mousedown', function() {
-    
-//      display.textContent = display.textContent.concat(9);
- 
-//  });
- 
-//  zero.addEventListener('mousedown', function() {
-    
-//      display.textContent = display.textContent.concat(0);
- 
-//  });
-
-
 
