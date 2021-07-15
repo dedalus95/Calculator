@@ -17,6 +17,7 @@ const seven = document.querySelector('#seven');
 const eight = document.querySelector('#eight');
 const nine = document.querySelector('#nine');
 const zero = document.querySelector('#zero');
+const dot = document.querySelector('#dot');
 const clear = document.querySelector('#clear');
 
 
@@ -28,10 +29,10 @@ const digits = document.querySelectorAll('#digits button');
 digits.forEach(button => 
     button.addEventListener('mousedown', function(e) {
         if(e.target === one) {
-            display.textContent = display.textContent.concat(1);
+            display.textContent = display.textContent.concat('1');
         }
         if(e.target === two) {
-            display.textContent = display.textContent.concat(2);
+            display.textContent = display.textContent.concat('2');
         }
         if(e.target === three) {
             display.textContent = display.textContent.concat(3);
@@ -56,6 +57,9 @@ digits.forEach(button =>
         }
         if(e.target === zero) {
             display.textContent = display.textContent.concat(0);
+        }
+        if(e.target === dot) {
+            display.textContent = display.textContent.concat('.');
         }
     }));
   
@@ -109,39 +113,115 @@ function operate(a, operator, b) {
 }
 
 
-let a = parseInt(display.textContent);
-let b = parseInt(display.textContent);
+let a = parseFloat(display.textContent);
+let b = parseFloat(display.textContent);
 
 
 
-operators.forEach(operator => operator.addEventListener('mousedown', function() {
+let operator1;
+operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
   
-  
-  
-    if(plus) {
-        a = parseInt(display.textContent);
+    
+
+    if(event.target.id === 'plus') {
+        a = parseFloat(display.textContent);
         console.log('first number is ' + a);
         display.textContent = '';
+          operator1 = 'plus';
+    }
+
+    if(event.target.id === 'divide') {
+        a = parseFloat(display.textContent);
+        console.log('first number is ' + a);
+        display.textContent = '';
+          operator1 = 'divide';
+    }
+
+    if(event.target.id === 'per') {
+        a = parseFloat(display.textContent);
+        console.log('first number is ' + a);
+        display.textContent = '';
+          operator1 = 'per';
+    }
+
+    if(event.target.id === 'minus') {
+        a = parseFloat(display.textContent);
+        console.log('first number is ' + a);
+        display.textContent = '';
+          operator1 = 'minus';
+    }
+  
+}));
+
+
+// operators.forEach(operator => operator.addEventListener('mousedown', function(){
+  
     
-       
-   
+//     if(a && b && operator1 === 'plus') {
+        
+    
+//            display.textContent = operate(a,plus,b);
+           
+    
+//         }
+    
+    
+        
+  
+// }));
 
 
 
-       equal.addEventListener('mousedown', function(){
-        b = parseInt(display.textContent);
+
+
+    
+
+equal.addEventListener('mousedown', function(){
+
+  
+    if(operator1 === 'plus') {
+    b = parseFloat(display.textContent);
+    
+        console.log('second number is ' + b)
+
+        return display.textContent = operate(a,plus,b);
+
+    }
+
+
+    if(operator1 === 'divide') {
+        b = parseFloat(display.textContent);
         
             console.log('second number is ' + b)
-
-            return display.textContent = operate(a,plus,b);
-
-        });
     
-    }  
+            return display.textContent = operate(a,division,b);
+    
+        }
+
+    if(operator1 === 'per') {
+        b = parseFloat(display.textContent);
         
-}));
+            console.log('second number is ' + b)
+    
+            return display.textContent = operate(a,per,b);
+    
+        }
+    
+    if(operator1 === 'minus') {
+        b = parseFloat(display.textContent);
+        
+            console.log('second number is ' + b)
+    
+            return display.textContent = operate(a,minus,b);
+    
+        }
+
+
     
 
+   
+
+    });
 
 
 
@@ -156,115 +236,3 @@ operators.forEach(operator => operator.addEventListener('mousedown', function() 
 
 
 
-
-
-// // multiplication code
-
-// let firstNumber1 ;
-// let secondNumber1 ;
-
-// per.addEventListener('mousedown', function() {
-//     firstNumber = display.textContent;
-//     // console.log('firstNumber is ' + firstNumber1);
-
-//     if(per) {
-//         display.textContent = '';
-        
-//     }
-
-//     function operate() {
-//         // secondNumber1 = display.textContent;
-//         // console.log(secondNumber1);
-//         equal.addEventListener('mousedown', function(){
-//             secondNumber = display.textContent;
-//             // console.log('secondNumber is ' + secondNumber1);
-//             function multiply() {
-//                 console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
-//                 display.textContent = '';
-//                 let result = parseInt(firstNumber) * parseInt(secondNumber);
-//                 display.textContent = result;
-//                 console.log('result is '+ result);
-                 
-//                 //  secondNumber1 = firstNumber1;
-//                 //  if(clear) {
-//                 //     secondNumber1 = firstNumber1;                
-//                 //      }
-//                  }
-//             multiply();
-//         });
-
-//     }
-//     operate();
-// });
-
-
-// //SUBTRACTION CODE 
-
-// minus.addEventListener('mousedown', function() {
-//     firstNumber = display.textContent;
-//     console.log('firstNumber is ' + firstNumber);
-
-//     if(minus) {
-//         display.textContent = '';
-        
-//     }
-
-//     function operate() {
-//         secondNumber = display.textContent;
-//         equal.addEventListener('mousedown', function(){
-//             secondNumber = display.textContent;
-//             // console.log('secondNumber is ' + secondNumber);
-//             function subtract() {
-//                 console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
-//                 display.textContent = '';
-//                  display.textContent = parseInt(firstNumber) - parseInt(secondNumber);
-//                  if(clear) {
-//                     firstNumber = 0;
-//                     secondNumber = 0;
-
-//                  }
-
-                 
-//             }
-//             subtract();
-//         });
-
-//     }
-//     operate();
-// });
-
-
-// //DIVISION CODE
-
-// division.addEventListener('mousedown', function() {
-//     firstNumber = display.textContent;
-//     console.log('firstNumber is ' + firstNumber);
-
-//     if(division) {
-//         display.textContent = '';
-        
-//     }
-
-//     function operate() {
-//         secondNumber = display.textContent;
-//         equal.addEventListener('mousedown', function(){
-//             secondNumber = display.textContent;
-//             // console.log('secondNumber is ' + secondNumber);
-//             function divide() {
-//                 console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
-//                 display.textContent = '';
-//                  display.textContent = parseInt(firstNumber) / parseInt(secondNumber);
-//                  if(clear) {
-//                     firstNumber = 0;
-//                     secondNumber = 0;
-
-//                  }
-
-                 
-//             }
-//             divide();
-//         });
-
-//     }
-//     operate();
-// });
