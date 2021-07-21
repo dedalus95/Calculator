@@ -29,10 +29,10 @@ const digits = document.querySelectorAll('#digits button');
 digits.forEach(button => 
     button.addEventListener('mousedown', function(e) {
         if(e.target === one) {
-            display.textContent = display.textContent.concat('1');
+            display.textContent = display.textContent.concat(1);
         }
         if(e.target === two) {
-            display.textContent = display.textContent.concat('2');
+            display.textContent = display.textContent.concat(2);
         }
         if(e.target === three) {
             display.textContent = display.textContent.concat(3);
@@ -65,6 +65,10 @@ digits.forEach(button =>
   
  clear.addEventListener('mousedown', function() {
      display.textContent = '';
+     a = null;
+     b = null;
+     operator1 = '';
+     operator = '';
  });
  
  window.addEventListener('keydown', function(e) {
@@ -119,22 +123,40 @@ let b = parseFloat(display.textContent);
 
 
 let operator1;
-operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
-  
-    
+let waitingForSecondNumber;
 
-    if(event.target.id === 'plus') {
+
+
+
+operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
+
+    
+    if(event.target.id === 'plus' && isNaN(a)) {
+
+
+    
         a = parseFloat(display.textContent);
         console.log('first number is ' + a);
-        display.textContent = '';
           operator1 = 'plus';
+          waitingForSecondNumber = true;  
+          display.textContent = '';
+         
     }
+
+    if(event.target.id === 'plus' && !isNaN(a)) {
+              
+        b = parseFloat(display.textContent);
+        return display.textContent = operate(a,plus,b);
+    }    
+
+    
 
     if(event.target.id === 'divide') {
         a = parseFloat(display.textContent);
         console.log('first number is ' + a);
         display.textContent = '';
           operator1 = 'divide';
+          waitingForSecondNumber = true;
     }
 
     if(event.target.id === 'per') {
@@ -142,6 +164,8 @@ operators.forEach(operator => operator.addEventListener('mousedown', function(ev
         console.log('first number is ' + a);
         display.textContent = '';
           operator1 = 'per';
+          waitingForSecondNumber = true;
+
     }
 
     if(event.target.id === 'minus') {
@@ -149,42 +173,29 @@ operators.forEach(operator => operator.addEventListener('mousedown', function(ev
         console.log('first number is ' + a);
         display.textContent = '';
           operator1 = 'minus';
+          waitingForSecondNumber = true;
     }
   
 }));
 
 
-// operators.forEach(operator => operator.addEventListener('mousedown', function(){
-  
-    
-//     if(a && b && operator1 === 'plus') {
-        
-    
-//            display.textContent = operate(a,plus,b);
-           
-    
-//         }
-    
-    
-        
-  
-// }));
 
 
 
 
-
-    
 
 equal.addEventListener('mousedown', function(){
-
   
     if(operator1 === 'plus') {
+        
     b = parseFloat(display.textContent);
+
     
-        console.log('second number is ' + b)
+        console.log('second number is ' + b);
+        waitingForSecondNumber = false;
 
         return display.textContent = operate(a,plus,b);
+
 
     }
 
@@ -192,7 +203,8 @@ equal.addEventListener('mousedown', function(){
     if(operator1 === 'divide') {
         b = parseFloat(display.textContent);
         
-            console.log('second number is ' + b)
+            console.log('second number is ' + b);
+            waitingForSecondNumber = false;
     
             return display.textContent = operate(a,division,b);
     
@@ -201,7 +213,8 @@ equal.addEventListener('mousedown', function(){
     if(operator1 === 'per') {
         b = parseFloat(display.textContent);
         
-            console.log('second number is ' + b)
+            console.log('second number is ' + b);
+            waitingForSecondNumber = false;
     
             return display.textContent = operate(a,per,b);
     
@@ -210,29 +223,14 @@ equal.addEventListener('mousedown', function(){
     if(operator1 === 'minus') {
         b = parseFloat(display.textContent);
         
-            console.log('second number is ' + b)
+            console.log('second number is ' + b);
+            waitingForSecondNumber = false;
+
     
             return display.textContent = operate(a,minus,b);
     
         }
 
 
-    
-
-   
 
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
