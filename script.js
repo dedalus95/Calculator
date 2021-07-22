@@ -2,61 +2,56 @@
 
 
 const display = document.querySelector('#display');
-const plus = document.querySelector('#plus');
-const per = document.querySelector('#per');
-const minus = document.querySelector('#minus');
-const division = document.querySelector('#divide');
 const equal = document.querySelector('#equal');
-const one = document.querySelector('#one');
-const two = document.querySelector('#two');
-const three = document.querySelector('#three');
-const four = document.querySelector('#four');
-const five = document.querySelector('#five');
-const six = document.querySelector('#six');
-const seven = document.querySelector('#seven');
-const eight = document.querySelector('#eight');
-const nine = document.querySelector('#nine');
-const zero = document.querySelector('#zero');
 const clear = document.querySelector('#clear');
+const operators = document.querySelectorAll('#operators button');
+const plus = document.querySelector('#plus');
 
 
 const digits = document.querySelectorAll('#digits button');
 digits.forEach(button => 
-    button.addEventListener('mousedown', function(e) {
-        if(e.target === one) {
+    button.addEventListener('mousedown', function(event) {
+        if(event.target.id === '1') {
             display.textContent = display.textContent.concat(1);
         }
-        if(e.target === two) {
+        if(event.target.id === '2') {
             display.textContent = display.textContent.concat(2);
         }
-        if(e.target === three) {
+        if(event.target.id === '3') {
             display.textContent = display.textContent.concat(3);
         }
-        if(e.target === four) {
+        if(event.target.id === '4') {
             display.textContent = display.textContent.concat(4);
         }
-        if(e.target === five) {
+        if(event.target.id === '5') {
             display.textContent = display.textContent.concat(5);
         }
-        if(e.target === six) {
+        if(event.target.id === '6') {
             display.textContent = display.textContent.concat(6);
         }
-        if(e.target === seven) {
+        if(event.target.id === '7') {
             display.textContent = display.textContent.concat(7);
         }
-        if(e.target === eight) {
+        if(event.target.id === '8') {
             display.textContent = display.textContent.concat(8);
         }
-        if(e.target === nine) {
+        if(event.target.id === '9') {
             display.textContent = display.textContent.concat(9);
         }
-        if(e.target === zero) {
+        if(event.target.id === '0') {
             display.textContent = display.textContent.concat(0);
         }
+      
+    
+
     }));
   
  clear.addEventListener('mousedown', function() {
      display.textContent = '';
+     a = null;
+     b = null;
+     operator1 = '';
+     operator = '';
  });
  
  window.addEventListener('keydown', function(e) {
@@ -64,195 +59,63 @@ digits.forEach(button =>
      {display.textContent = display.textContent.concat(e.key);}
  });
 
-
-
-// addition code
-
-let firstNumber;
-let secondNumber;
-
-plus.addEventListener('mousedown', function() {
-    firstNumber = display.textContent;
-    console.log('firstNumber is ' + firstNumber);
-
-    if(plus) {
-        display.textContent = '';
-        
-    }
-
-    function operate() {
-        // secondNumber = display.textContent;
-        equal.addEventListener('mousedown', function(){
-            secondNumber = display.textContent;
-            // console.log('secondNumber is ' + secondNumber);
-            function add() {
-                console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
-                display.textContent = '';
-                 display.textContent = parseInt(firstNumber) + parseInt(secondNumber);
-                 firstNumber=0;
-                 secondNumber=0;
-                 
-            }
-            add();
-        });
-
-    }
-    operate();
-});
+//try experiment
 
 
 
-// multiplication code
 
+function add(a,b) {
+    return a+b;
+}
 
-per.addEventListener('mousedown', function() {
-    firstNumber = display.textContent;
-    // console.log('firstNumber is ' + firstNumber1);
+function subtract(a,b) {
+    return a-b;
+}
 
-    if(per) {
-        display.textContent = '';
-        
-    }
+function multiply(a,b) {
+    return a*b;
+}
 
-    function operate() {
-        // secondNumber1 = display.textContent;
-        // console.log(secondNumber1);
-        equal.addEventListener('mousedown', function(){
-            secondNumber = display.textContent;
-            // console.log('secondNumber is ' + secondNumber1);
-            function multiply() {
-                console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
-                display.textContent = '';
-                let result = parseInt(firstNumber) * parseInt(secondNumber);
-                display.textContent = result;
-                console.log('result is '+ result);
-                 
-                firstNumber=1;
-                secondNumber=1;
-                 }
-            multiply();
-        });
+function divide(a,b) {
+    return a/b;
+}
 
-    }
-    operate();
-});
-
-
-//SUBTRACTION CODE 
-
-minus.addEventListener('mousedown', function() {
-    firstNumber = display.textContent;
-    console.log('firstNumber is ' + firstNumber);
-
-    if(minus) {
-        display.textContent = '';
-        
-    }
-
-    function operate() {
-        secondNumber = display.textContent;
-        equal.addEventListener('mousedown', function(){
-            secondNumber = display.textContent;
-            // console.log('secondNumber is ' + secondNumber);
-            function subtract() {
-                console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
-                display.textContent = '';
-                 display.textContent = parseInt(firstNumber) - parseInt(secondNumber);
-                 if(clear) {
-                    firstNumber = 0;
-                    secondNumber = 0;
-
-                 }
-
-                 
-            }
-            subtract();
-        });
-
-    }
-    operate();
-});
-
-
-//DIVISION CODE
-
-division.addEventListener('mousedown', function() {
-    firstNumber = display.textContent;
-    console.log('firstNumber is ' + firstNumber);
-
-    if(division) {
-        display.textContent = '';
-        
-    }
-
-    function operate() {
-        secondNumber = display.textContent;
-        equal.addEventListener('mousedown', function(){
-            secondNumber = display.textContent;
-            // console.log('secondNumber is ' + secondNumber);
-            function divide() {
-                console.log('first number is ' + firstNumber, 'second number is ' + secondNumber);
-                display.textContent = '';
-                 display.textContent = parseInt(firstNumber) / parseInt(secondNumber);
-                 
-                    firstNumber = 2;
-                    secondNumber = 2;
-
-                 
-
-                 
-            }
-            divide();
-        });
-
-    }
-    operate();
-});
-
-
-// function add() {
-//     display.textContent = '';
-//     return display.content = firstNumber + secondNumber;
+function operate(a, operator, b) {
     
-  
-// }
-// function subtract(a,b) {
-//     return a-b;
-//  }
- 
-//  function multiply(a,b) {
+    if (operator == plus) {
+        return add(a,b);
+    }
 
-//     return a*b;
-//  }
+    if (operator == minus) {
+        return subtract(a,b);
+    }
 
-//  function divide(a,b) {
-//     return a/b;
-//  }
+    if(operator == per) {
+        return multiply(a,b);
+    }
+
+    if(operator == division) {
+        return divide(a,b);
+    }
+}
 
 
- 
 
-//  function operate (a,operator,b) {
 
-    
-//     if (plus) {
 
-//         secondNumber = display.textContent;
-//         equal.addEventListener('mousedown', add);
-//     }
 
-//     if(operator === minus) {
-//         return subtract(a,b);
-//     }
+operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
 
-//     if(operator === per) {
-//         return multiply(a,b);
-//     }
+    let a = display.textContent;
+    let operator = event.target.innerHTML;
+    display.textContent = a.concat(' ' + operator);
+    let b = 34;
 
-//     if(operator === division) {
-//         return divide(a,b);
-//     }
-        
-    
-//  }
+    alert(operate(a,plus,b));
+
+}))
+
+
+
+
 
