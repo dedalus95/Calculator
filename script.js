@@ -119,118 +119,103 @@ function operate(a, operator, b) {
 
 let a = parseFloat(display.textContent);
 let b = parseFloat(display.textContent);
+let result;
+
 
 
 
 let operator1;
-let waitingForSecondNumber;
 
 
 
 
 operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
 
-    
-    if(event.target.id === 'plus' && isNaN(a)) {
+    b = parseFloat(display.textContent);
 
 
+if(operator1 == 'plus') {
+     result = operate(a,plus,b);
+     display.textContent = result;
+     
     
-        a = parseFloat(display.textContent);
-        console.log('first number is ' + a);
-          operator1 = 'plus';
-          waitingForSecondNumber = true;  
-          display.textContent = '';
-         
+}
+
+else if (operator1 == 'per') {
+    result = operate(a,per,b);
+     display.textContent = result;
+     
+
+}
+
+else if ( operator1 == 'divide') {
+    result = operate(a,division,b);
+    display.textContent = result;
+    
+}
+
+else if ( operator1 == 'minus') {
+    result = operate(a,minus,b);
+    display.textContent = result;
+    
+}    
+
+
+
+
+a = parseFloat(display.textContent);
+console.log('first number is ' + a);
+display.textContent = '';
+
+    if(event.target.id === 'plus') {
+        
+          operator1 = 'plus';     
     }
 
-    if(event.target.id === 'plus' && !isNaN(a)) {
-              
-        b = parseFloat(display.textContent);
-        return display.textContent = operate(a,plus,b);
-    }    
-
-    
-
-    if(event.target.id === 'divide') {
-        a = parseFloat(display.textContent);
-        console.log('first number is ' + a);
-        display.textContent = '';
+    else if(event.target.id === 'divide') {      
           operator1 = 'divide';
-          waitingForSecondNumber = true;
     }
 
-    if(event.target.id === 'per') {
-        a = parseFloat(display.textContent);
-        console.log('first number is ' + a);
-        display.textContent = '';
+    else if(event.target.id === 'per') {   
           operator1 = 'per';
-          waitingForSecondNumber = true;
-
     }
 
-    if(event.target.id === 'minus') {
-        a = parseFloat(display.textContent);
-        console.log('first number is ' + a);
-        display.textContent = '';
+    else {
           operator1 = 'minus';
-          waitingForSecondNumber = true;
     }
-  
-}));
 
-
-
+}))
 
 
 
 
 equal.addEventListener('mousedown', function(){
-  
-    if(operator1 === 'plus') {
-        
+
     b = parseFloat(display.textContent);
+    console.log('second number is ' + b);
 
-    
-        console.log('second number is ' + b);
-        waitingForSecondNumber = false;
+    if(operator1 === 'plus') {
 
-        return display.textContent = operate(a,plus,b);
-
-
+        result = operate(a,plus,b);
+        display.textContent = result;
+       
     }
 
+    else if(operator1 === 'divide') {
+        result = operate(a,division,b);
+        display.textContent = result;
+    
+    
+    }
 
-    if(operator1 === 'divide') {
-        b = parseFloat(display.textContent);
-        
-            console.log('second number is ' + b);
-            waitingForSecondNumber = false;
-    
-            return display.textContent = operate(a,division,b);
-    
-        }
+    else if(operator1 === 'per') {
+        result = operate(a,per,b);
+        display.textContent = result;      
 
-    if(operator1 === 'per') {
-        b = parseFloat(display.textContent);
-        
-            console.log('second number is ' + b);
-            waitingForSecondNumber = false;
+    }
     
-            return display.textContent = operate(a,per,b);
-    
-        }
-    
-    if(operator1 === 'minus') {
-        b = parseFloat(display.textContent);
-        
-            console.log('second number is ' + b);
-            waitingForSecondNumber = false;
+   else { 
+    result = operate(a,minus,b);
+    display.textContent = result;     }
 
-    
-            return display.textContent = operate(a,minus,b);
-    
-        }
-
-
-
-    });
+    })
