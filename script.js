@@ -1,5 +1,4 @@
 
-let hihihi;
 
 
 const display = document.querySelector('#display');
@@ -23,14 +22,19 @@ const clear = document.querySelector('#clear');
 
 
 const operators = document.querySelectorAll('#operators button');
+let toggleOperator;
+let equalActive;
 
 
 
 const digits = document.querySelectorAll('#digits button');
+
 digits.forEach(button => 
     button.addEventListener('mousedown', function(e) {
-        hihihi = true;
-        console.log(hihihi);
+        if(a >= 0) {
+            equalActive = true;
+        }
+        toggleOperator = true;
         if(e.target === one) {
             display.textContent = display.textContent.concat(1);
         }
@@ -64,6 +68,8 @@ digits.forEach(button =>
         if(e.target === dot) {
             display.textContent = display.textContent.concat('.');
         }
+
+
     }));
   
  clear.addEventListener('mousedown', function() {
@@ -96,7 +102,8 @@ function multiply(a,b) {
     return a*b;
 }
 
-function divide(a,b) {
+function divide(a,b) 
+{  
     return a/b;
 }
 
@@ -126,39 +133,34 @@ let result;
 
 
 
-
 let operator1;
 
 
 
 operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
     b = parseFloat(display.textContent);
+    
 
-
-if(operator1 == 'plus' && hihihi != false) {
+if(operator1 == 'plus' && toggleOperator != false) {
      result = operate(a,plus,b);
      display.textContent = result;
-     
     
 }
 
-else if (operator1 == 'per' && hihihi != false) {
+else if (operator1 == 'per' && toggleOperator != false) {
     result = operate(a,per,b);
      display.textContent = result;
-     
 
 }
 
-else if ( operator1 == 'divide' && hihihi != false) {
+else if ( operator1 == 'divide' && toggleOperator != false) {
     result = operate(a,division,b);
     display.textContent = result;
-    
 }
 
-else if ( operator1 == 'minus' && hihihi != false) {
+else if ( operator1 == 'minus' && toggleOperator != false) {
     result = operate(a,minus,b);
     display.textContent = result;
-    
 }    
 
 
@@ -190,37 +192,87 @@ display.textContent = '';
 
 
 
+
+
 equal.addEventListener('mousedown', function(){
+
+   
 
     b = parseFloat(display.textContent);
     console.log('second number is ' + b);
-    hihihi = false;
-    console.log(hihihi);
+    toggleOperator = false;
 
+    if(equalActive == true) {
+
+    
     if(operator1 === 'plus') {
 
         result = operate(a,plus,b);
-        display.textContent = result;
         console.log('result is ' + result);
+        if(!Number.isInteger(result)) {
+            display.textContent = result.toFixed(3);
+            equalActive=false;
+        } else if(result > 9999999999999) {
+            display.textContent = 'nope';
+            equalActive=false;
+        } else {
+            display.textContent = result;
+            equalActive = false;
+        }
+        
     }
 
     else if(operator1 === 'divide') {
+       
+        if (b === 0) {
+            alert('0 merda');
+        
+        }
         result = operate(a,division,b);
-        display.textContent = result;
-        a = result;
-    
+        console.log('result is ' + result);
+       
+        if(!Number.isInteger(result)) {
+            display.textContent = result.toFixed(3);
+            equalActive=false;
+        } else if(result > 9999999999999) {
+            display.textContent = 'nope';
+            equalActive=false;
+        } else {
+            display.textContent = result;
+            equalActive=false;
+        }
+
     }
 
     else if(operator1 === 'per') {
         result = operate(a,per,b);
-        display.textContent = result;     
-        a = result;
+        console.log('result is ' + result);  
+        if(!Number.isInteger(result)) {
+            display.textContent = result.toFixed(3);
+            equalActive=false;
+        } else if(result > 9999999999999) {
+            display.textContent = 'nope';
+            equalActive=false;
+        }else {
+            display.textContent = result;
+            equalActive=false;
+        }
     }
     
    else { 
     result = operate(a,minus,b);
-    display.textContent = result;   
-    a = result;
-}
+    console.log('result is ' + result);
+    if(!Number.isInteger(result)) {
+        display.textContent = result.toFixed(3);
+        equalActive=false;
+    } else if(result > 9999999999999) {
+        display.textContent = 'nope';
+        equalActive=false;
+    }   else {
+        display.textContent = result;
+        equalActive=false;
+    }
+    
+}}
 
     })
