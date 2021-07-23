@@ -1,4 +1,5 @@
 
+let hihihi;
 
 
 const display = document.querySelector('#display');
@@ -28,6 +29,8 @@ const operators = document.querySelectorAll('#operators button');
 const digits = document.querySelectorAll('#digits button');
 digits.forEach(button => 
     button.addEventListener('mousedown', function(e) {
+        hihihi = true;
+        console.log(hihihi);
         if(e.target === one) {
             display.textContent = display.textContent.concat(1);
         }
@@ -128,33 +131,31 @@ let operator1;
 
 
 
-
 operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
-
     b = parseFloat(display.textContent);
 
 
-if(operator1 == 'plus') {
+if(operator1 == 'plus' && hihihi != false) {
      result = operate(a,plus,b);
      display.textContent = result;
      
     
 }
 
-else if (operator1 == 'per') {
+else if (operator1 == 'per' && hihihi != false) {
     result = operate(a,per,b);
      display.textContent = result;
      
 
 }
 
-else if ( operator1 == 'divide') {
+else if ( operator1 == 'divide' && hihihi != false) {
     result = operate(a,division,b);
     display.textContent = result;
     
 }
 
-else if ( operator1 == 'minus') {
+else if ( operator1 == 'minus' && hihihi != false) {
     result = operate(a,minus,b);
     display.textContent = result;
     
@@ -193,29 +194,33 @@ equal.addEventListener('mousedown', function(){
 
     b = parseFloat(display.textContent);
     console.log('second number is ' + b);
+    hihihi = false;
+    console.log(hihihi);
 
     if(operator1 === 'plus') {
 
         result = operate(a,plus,b);
         display.textContent = result;
-       
+        console.log('result is ' + result);
     }
 
     else if(operator1 === 'divide') {
         result = operate(a,division,b);
         display.textContent = result;
-    
+        a = result;
     
     }
 
     else if(operator1 === 'per') {
         result = operate(a,per,b);
-        display.textContent = result;      
-
+        display.textContent = result;     
+        a = result;
     }
     
    else { 
     result = operate(a,minus,b);
-    display.textContent = result;     }
+    display.textContent = result;   
+    a = result;
+}
 
     })
