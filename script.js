@@ -21,9 +21,18 @@ const nine = document.querySelector('#nine');
 const zero = document.querySelector('#zero');
 const dot = document.querySelector('#dot');
 const clear = document.querySelector('#clear');
+const deleteBtn = document.querySelector('#delete');
+
+
+
+
 
 
 const operators = document.querySelectorAll('#operators button');
+
+//switchOperatorOff sets a boolean and tell the calculator
+// no to listen to operator buttons being pressed
+// multiple times in a row.
 
 let switchOperatorsOff;
 
@@ -81,13 +90,14 @@ digits.forEach(button =>
         if(e.target === zero) {
             display.textContent = display.textContent.concat(0);
         }
-        if(e.target === dot) {
+        if(e.target === dot && !display.textContent.includes('.')) {
             display.textContent = display.textContent.concat('.');
         }
 
 
     }));
-  
+
+    
    // CLEAR BUTTON 
 
  clear.addEventListener('mousedown', function() {
@@ -98,6 +108,19 @@ digits.forEach(button =>
      operator = '';
  });
 
+
+ deleteBtn.addEventListener('mousedown', function() {
+     let str = display.textContent;
+    let newStr = str.substring(0,str.length -1);
+    display.textContent = newStr;
+
+    if(display.textContent == '') {
+        a = null;
+     b = null;
+     operator1 = '';
+     operator = '';
+    }
+ })
 
 
  // IT WORKS ALSO WITH KEYS
@@ -128,7 +151,7 @@ function divide(a,b)
     return a/b;
 }
 
-// THE VERY ENGINE OF THE CALCULATOR
+// FUNCTION operate() IS THE VERY ENGINE OF THE CALCULATOR
 
 function operate(a, operator, b) {
     
@@ -161,7 +184,7 @@ let operator1;
 
 
 
-//OPERATORS FUNCTION
+//OPERATORS CODE
 
 operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
     b = parseFloat(display.textContent);
@@ -267,7 +290,7 @@ equal.addEventListener('mousedown', function(){
     else if(operator1 === 'divide') {
        
         if (b === 0) {
-            alert('0 merda');
+            alert('Nope! You can\'t divide by 0. Press \'clear\' to start again!    💩💩💩💩💩💩💩');
         
         }
         result = operate(a,division,b);
