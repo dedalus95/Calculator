@@ -1,6 +1,8 @@
 
 
 
+//QUERY SELECTORS FOR BUTTONS
+
 const display = document.querySelector('#display');
 const plus = document.querySelector('#plus');
 const per = document.querySelector('#per');
@@ -22,10 +24,20 @@ const clear = document.querySelector('#clear');
 
 
 const operators = document.querySelectorAll('#operators button');
+
+// toggleOperator ALLOWS ME TO SET A BOOLEAN AND TELL 
+// THE CALCULATOR HOW TO MAKE A CHOICE 
+// BETWEEN THE FIRST OPERATOR OF A SEQUENCE
+// AND THE SECOND ONE (3+3*5: FIRST PLUS HAS A DIFFERENT LOGIC
+// FROM THE SECOND MULTIPLICATION OPERATOR). 
+
 let toggleOperator;
+
+// equalActive SETS A BOOLEAN WHICH MAKES THE CALCULATOR
+// TELL WHEN THE EQUAL BUTTON IS ACTIVE AND WHEN NOT.
 let equalActive;
 
-
+//FUNCTION FOR DIGITS: THESE FUNCTIONS POPULATE THE DISPLAY.
 
 const digits = document.querySelectorAll('#digits button');
 
@@ -72,6 +84,8 @@ digits.forEach(button =>
 
     }));
   
+   // CLEAR BUTTON 
+
  clear.addEventListener('mousedown', function() {
      display.textContent = '';
      a = null;
@@ -79,15 +93,18 @@ digits.forEach(button =>
      operator1 = '';
      operator = '';
  });
+
+
+
+ // IT WORKS ALSO WITH KEYS
  
  window.addEventListener('keydown', function(e) {
      if (/^[0-9]+$/i.test(e.key) === true)
      {display.textContent = display.textContent.concat(e.key);}
  });
 
-//try experiment
 
-
+ // BASIC OPERATIONS FUNCTIONS
 
 
 function add(a,b) {
@@ -106,6 +123,8 @@ function divide(a,b)
 {  
     return a/b;
 }
+
+// THE VERY ENGINE OF THE CALCULATOR
 
 function operate(a, operator, b) {
     
@@ -126,19 +145,27 @@ function operate(a, operator, b) {
     }
 }
 
+// a, b AND result STORE THE DISPLAY CONTENT AND 
+// PASS THE VALUE TO THE OPERATE FUNCTION
 
 let a = parseFloat(display.textContent);
 let b = parseFloat(display.textContent);
 let result;
 
-
-
+//operator1 STORES THE OPERATOR CHOICE.
 let operator1;
 
 
 
+//OPERATORS FUNCTION
+
 operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
     b = parseFloat(display.textContent);
+
+    // THIS PART MAKES THE CALCULATOR STORE
+    // THE RESULT FOR THE NEXT OPERATION.
+    // IN FACT, THIS PART OF CODE MAKES CHAINED OPERATIONS
+    // POSSIBLE
     
 
 if(operator1 == 'plus' && toggleOperator != false) {
@@ -164,6 +191,7 @@ else if ( operator1 == 'minus' && toggleOperator != false) {
 }    
 
 
+//THIS PART OF CODE MAKES THE OPERATOR CHOICE BE STORED
 
 
 a = parseFloat(display.textContent);
@@ -191,7 +219,8 @@ display.textContent = '';
 
 
 
-
+// THIS PART MAKES THE RESULT DISPLAY WHEN EQUAL IS
+// PRESSED
 
 
 equal.addEventListener('mousedown', function(){
