@@ -25,6 +25,9 @@ const clear = document.querySelector('#clear');
 
 const operators = document.querySelectorAll('#operators button');
 
+let switchOperatorsOff;
+
+
 // toggleOperator ALLOWS ME TO SET A BOOLEAN AND TELL 
 // THE CALCULATOR HOW TO MAKE A CHOICE 
 // BETWEEN THE FIRST OPERATOR OF A SEQUENCE
@@ -43,6 +46,7 @@ const digits = document.querySelectorAll('#digits button');
 
 digits.forEach(button => 
     button.addEventListener('mousedown', function(e) {
+        switchOperatorsOff = false;
         if(a >= 0) {
             equalActive = true;
         }
@@ -161,33 +165,38 @@ let operator1;
 
 operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
     b = parseFloat(display.textContent);
-
+    
+    
     // THIS PART MAKES THE CALCULATOR STORE
     // THE RESULT FOR THE NEXT OPERATION.
     // IN FACT, THIS PART OF CODE MAKES CHAINED OPERATIONS
     // POSSIBLE
-    
+if (switchOperatorsOff == false)
+ 
+{
 
 if(operator1 == 'plus' && toggleOperator != false) {
      result = operate(a,plus,b);
      display.textContent = result;
-    
+     switchOperatorsOff = true;
 }
 
 else if (operator1 == 'per' && toggleOperator != false) {
     result = operate(a,per,b);
      display.textContent = result;
-
+     switchOperatorsOff = true;
 }
 
 else if ( operator1 == 'divide' && toggleOperator != false) {
     result = operate(a,division,b);
     display.textContent = result;
+    switchOperatorsOff = true;
 }
 
 else if ( operator1 == 'minus' && toggleOperator != false) {
     result = operate(a,minus,b);
     display.textContent = result;
+    switchOperatorsOff = true;
 }    
 
 
@@ -200,21 +209,25 @@ display.textContent = '';
 
     if(event.target.id === 'plus') {
         
-          operator1 = 'plus';     
+          operator1 = 'plus';    
+          switchOperatorsOff = true; 
     }
 
     else if(event.target.id === 'divide') {      
           operator1 = 'divide';
+          switchOperatorsOff = true;
     }
 
     else if(event.target.id === 'per') {   
           operator1 = 'per';
+          switchOperatorsOff = true;
     }
 
     else {
           operator1 = 'minus';
+          switchOperatorsOff = true;
     }
-
+}
 }))
 
 
