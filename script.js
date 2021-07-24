@@ -108,7 +108,7 @@ digits.forEach(button =>
      operator = '';
  });
 
-
+// DELETE BUTTON
  deleteBtn.addEventListener('mousedown', function() {
      let str = display.textContent;
     let newStr = str.substring(0,str.length -1);
