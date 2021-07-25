@@ -55,6 +55,8 @@ const digits = document.querySelectorAll('#digits button');
 
 digits.forEach(button => 
     button.addEventListener('mousedown', function(e) {
+
+        if(display.textContent.length < 13) {
         switchOperatorsOff = false;
         if(a >= 0) {
             equalActive = true;
@@ -94,6 +96,8 @@ digits.forEach(button =>
             display.textContent = display.textContent.concat('.');
         }
 
+        
+    }
 
     }));
 
@@ -130,6 +134,21 @@ digits.forEach(button =>
      {display.textContent = display.textContent.concat(e.key);}
  });
 
+
+ window.addEventListener('keydown', function(e) {
+     if(e.key === 'Backspace') {
+        let str = display.textContent;
+        let newStr = str.substring(0,str.length -1);
+        display.textContent = newStr;
+    
+        if(display.textContent == '') {
+            a = null;
+         b = null;
+         operator1 = '';
+         operator = '';
+        }
+     }
+ })
 
  // BASIC OPERATIONS FUNCTIONS
 
