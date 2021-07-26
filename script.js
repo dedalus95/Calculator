@@ -327,7 +327,7 @@ equal.addEventListener('mousedown', function(){
     else if(operator1 === 'divide') {
        
         if (b === 0) {
-            alert('Nope! You can\'t divide by 0. Press \'clear\' to start again!    💩💩💩💩💩💩💩');
+            alert('Nope! You can\'t divide by 0. Press \'AC\' to start again!    💩💩💩💩💩💩💩');
         
         }
         result = operate(a,division,b);
