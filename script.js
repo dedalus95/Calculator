@@ -58,7 +58,7 @@ digits.forEach(button =>
 
         
 
-        if(display.textContent.length < 13) {
+        if(display.textContent.length < 13 && display.textContent != result) {
         switchOperatorsOff = false;
         if(Number.isInteger(a) || a % 1 != 0) {
             equalActive = true;
