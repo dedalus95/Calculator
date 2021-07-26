@@ -56,9 +56,11 @@ const digits = document.querySelectorAll('#digits button');
 digits.forEach(button => 
     button.addEventListener('mousedown', function(e) {
 
+        
+
         if(display.textContent.length < 13) {
         switchOperatorsOff = false;
-        if(a >= 0) {
+        if(Number.isInteger(a) || a % 1 != 0) {
             equalActive = true;
         }
         toggleOperator = true;
@@ -130,7 +132,7 @@ digits.forEach(button =>
  // IT WORKS ALSO WITH KEYS
  
  window.addEventListener('keydown', function(e) {
-     if (/^[0-9]+$/i.test(e.key) === true)
+     if (/^[0-9]+$/i.test(e.key) === true && display.textContent.length < 13)
      {display.textContent = display.textContent.concat(e.key);}
  });
 
@@ -149,6 +151,7 @@ digits.forEach(button =>
         }
      }
  })
+
 
  // BASIC OPERATIONS FUNCTIONS
 
@@ -285,6 +288,15 @@ equal.addEventListener('mousedown', function(){
     b = parseFloat(display.textContent);
     console.log('second number is ' + b);
     toggleOperator = false;
+
+    if(isNaN(a)) {
+        display.textContent = '';
+        a = null;
+        b = null;
+        operator1 = '';
+        operator = '';
+    }
+
 
     if(equalActive == true) {
 
