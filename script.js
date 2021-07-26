@@ -132,6 +132,12 @@ digits.forEach(button =>
  // IT WORKS ALSO WITH KEYS
  
  window.addEventListener('keydown', function(e) {
+    switchOperatorsOff = false;
+    if(Number.isInteger(a) || a % 1 != 0) {
+        equalActive = true;
+    }
+    toggleOperator = true;
+
      if (/^[0-9]+$/i.test(e.key) === true && display.textContent.length < 13)
      {display.textContent = display.textContent.concat(e.key);}
  });
