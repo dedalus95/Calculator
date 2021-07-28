@@ -221,9 +221,9 @@ if(switchOperatorsOff == false) {
 if(operator1 == 'plus' && toggleOperator != false) {
      result = operate(a,plus,b);
      display.textContent = result;
-
      switchOperatorsOff = true;
      toggleClear = false;
+     equalActive = false;
     
 }
 
@@ -232,6 +232,7 @@ else if (operator1 == 'per' && toggleOperator != false) {
      display.textContent = result;
      switchOperatorsOff = true;
      toggleClear = false;
+     equalActive = false;
 }
 
 else if ( operator1 == 'divide' && toggleOperator != false) {
@@ -239,6 +240,7 @@ else if ( operator1 == 'divide' && toggleOperator != false) {
     display.textContent = result;
     switchOperatorsOff = true;
     toggleClear = false;
+    equalActive = false;
 }
 
 else if ( operator1 == 'minus' && toggleOperator != false) {
@@ -246,6 +248,7 @@ else if ( operator1 == 'minus' && toggleOperator != false) {
     display.textContent = result;
     switchOperatorsOff = true;
     toggleClear = false;
+    equalActive = false;
 }    
 
 
@@ -260,24 +263,28 @@ display.textContent = '';
           operator1 = 'plus';    
           switchOperatorsOff = true; 
           toggleClear = false;
+          equalActive = false;
     }
 
     else if(event.target.id === 'divide') {      
           operator1 = 'divide';
           switchOperatorsOff = true;
           toggleClear = false;
+          equalActive = false;
     }
 
     else if(event.target.id === 'per') {   
           operator1 = 'per';
           switchOperatorsOff = true;
           toggleClear = false;
+          equalActive = false;
     }
 
     else {
           operator1 = 'minus';
           switchOperatorsOff = true;
           toggleClear = false;
+          equalActive = false;
     }
 }
 }))
