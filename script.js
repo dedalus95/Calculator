@@ -1,8 +1,5 @@
 
 
-
-//QUERY SELECTORS FOR BUTTONS
-
 const display = document.querySelector('#display');
 const plus = document.querySelector('#plus');
 const per = document.querySelector('#per');
@@ -24,33 +21,12 @@ const clear = document.querySelector('#clear');
 const deleteBtn = document.querySelector('#delete');
 
 
-
-
-
-
 const operators = document.querySelectorAll('#operators button');
-
-//switchOperatorOff sets a boolean and tell the calculator
-// no to listen to operator buttons being pressed
-// multiple times in a row.
+let toggleOperator;
+let equalActive;
+let toggleClear;
 
 let switchOperatorsOff;
-
-
-// toggleOperator ALLOWS ME TO SET A BOOLEAN AND TELL 
-// THE CALCULATOR HOW TO MAKE A CHOICE 
-// BETWEEN THE FIRST OPERATOR OF A SEQUENCE
-// AND THE SECOND ONE (3+3*5: FIRST PLUS HAS A DIFFERENT LOGIC
-// FROM THE SECOND MULTIPLICATION OPERATOR). 
-
-let toggleOperator;
-
-// equalActive SETS A BOOLEAN WHICH MAKES THE CALCULATOR
-// TELL WHEN THE EQUAL BUTTON IS ACTIVE AND WHEN NOT.
-let equalActive;
-
-//FUNCTION FOR DIGITS: THESE FUNCTIONS POPULATE THE DISPLAY.
-
 const digits = document.querySelectorAll('#digits button');
 
 digits.forEach(button => 
@@ -58,12 +34,23 @@ digits.forEach(button =>
 
         
 
-        if(display.textContent.length < 13 && display.textContent != result) {
+        if(display.textContent.length <= 12 ) {
+
         switchOperatorsOff = false;
-        if(Number.isInteger(a) || a % 1 != 0) {
+
+        
+
+        if(a >= 0 || a <= 0) {
             equalActive = true;
         }
+
         toggleOperator = true;
+
+        if (display.textContent == result && result != 0) {
+                operator1 = '';
+        }
+
+       
         if(e.target === one) {
             display.textContent = display.textContent.concat(1);
         }
@@ -98,68 +85,85 @@ digits.forEach(button =>
             display.textContent = display.textContent.concat('.');
         }
 
-        
     }
-
     }));
-
-    
-   // CLEAR BUTTON 
-
+  
  clear.addEventListener('mousedown', function() {
+
      display.textContent = '';
-     a = null;
-     b = null;
+     a === false;
+     b === false;
+     result === false;
      operator1 = '';
-     operator = '';
+     switchOperatorsOff = true;
+     toggleOperator === false;
+     equalActive === false;
+     toggleClear = true;
+    
+    
  });
 
-// DELETE BUTTON
  deleteBtn.addEventListener('mousedown', function() {
-     let str = display.textContent;
-    let newStr = str.substring(0,str.length -1);
-    display.textContent = newStr;
+    let str = display.textContent;
+   let newStr = str.substring(0,str.length -1);
+   display.textContent = newStr;
 
-    if(display.textContent == '') {
-        a = null;
-     b = null;
+   if(display.textContent.length == 0) {
+     a === false;
+     b === false;
+     result === false;
      operator1 = '';
-     operator = '';
-    }
- })
+     switchOperatorsOff = true;
+     toggleOperator === false;
+     equalActive === false;
+     toggleClear = true;
+   }
+})
 
-
- // IT WORKS ALSO WITH KEYS
  
  window.addEventListener('keydown', function(e) {
-    switchOperatorsOff = false;
-    if(Number.isInteger(a) || a % 1 != 0) {
-        equalActive = true;
-    }
-    toggleOperator = true;
 
-     if (/^[0-9]+$/i.test(e.key) === true && display.textContent.length < 13)
+    switchOperatorsOff = false;
+
+        
+
+        if(a >= 0 || a <= 0) {
+            equalActive = true;
+        }
+
+        toggleOperator = true;
+
+        if (display.textContent == result && result != 0) {
+                operator1 = '';
+        }
+   
+     if (/^[0-9]+$/i.test(e.key) === true && display.textContent.length <= 12 )
      {display.textContent = display.textContent.concat(e.key);}
  });
 
-
  window.addEventListener('keydown', function(e) {
-     if(e.key === 'Backspace') {
-        let str = display.textContent;
-        let newStr = str.substring(0,str.length -1);
-        display.textContent = newStr;
-    
-        if(display.textContent == '') {
-            a = null;
-         b = null;
-         operator1 = '';
-         operator = '';
-        }
-     }
- })
+   if(e.key == 'Backspace') {
+    let str = display.textContent;
+    let newStr = str.substring(0,str.length -1);
+    display.textContent = newStr;
+ 
+    if(display.textContent.length == 1) {
+     a === false;
+     b === false;
+     result === false;
+     operator1 = '';
+     switchOperatorsOff = true;
+     toggleOperator === false;
+     equalActive === false;
+     toggleClear = true;
+    }
+   }
+    }
+);
+
+//try experiment
 
 
- // BASIC OPERATIONS FUNCTIONS
 
 
 function add(a,b) {
@@ -178,8 +182,6 @@ function divide(a,b)
 {  
     return a/b;
 }
-
-// FUNCTION operate() IS THE VERY ENGINE OF THE CALCULATOR
 
 function operate(a, operator, b) {
     
@@ -200,58 +202,53 @@ function operate(a, operator, b) {
     }
 }
 
-// a, b AND result STORE THE DISPLAY CONTENT AND 
-// PASS THE VALUE TO THE OPERATE FUNCTION
 
 let a = parseFloat(display.textContent);
 let b = parseFloat(display.textContent);
 let result;
 
-//operator1 STORES THE OPERATOR CHOICE.
+
+
 let operator1;
 
 
 
-//OPERATORS CODE
-
 operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
     b = parseFloat(display.textContent);
     
-    
-    // THIS PART MAKES THE CALCULATOR STORE
-    // THE RESULT FOR THE NEXT OPERATION.
-    // IN FACT, THIS PART OF CODE MAKES CHAINED OPERATIONS
-    // POSSIBLE
-if (switchOperatorsOff == false)
- 
-{
+if(switchOperatorsOff == false) {
 
 if(operator1 == 'plus' && toggleOperator != false) {
      result = operate(a,plus,b);
      display.textContent = result;
+
      switchOperatorsOff = true;
+     toggleClear = false;
+    
 }
 
 else if (operator1 == 'per' && toggleOperator != false) {
     result = operate(a,per,b);
      display.textContent = result;
      switchOperatorsOff = true;
+     toggleClear = false;
 }
 
 else if ( operator1 == 'divide' && toggleOperator != false) {
     result = operate(a,division,b);
     display.textContent = result;
     switchOperatorsOff = true;
+    toggleClear = false;
 }
 
 else if ( operator1 == 'minus' && toggleOperator != false) {
     result = operate(a,minus,b);
     display.textContent = result;
     switchOperatorsOff = true;
+    toggleClear = false;
 }    
 
 
-//THIS PART OF CODE MAKES THE OPERATOR CHOICE BE STORED
 
 
 a = parseFloat(display.textContent);
@@ -262,29 +259,32 @@ display.textContent = '';
         
           operator1 = 'plus';    
           switchOperatorsOff = true; 
+          toggleClear = false;
     }
 
     else if(event.target.id === 'divide') {      
           operator1 = 'divide';
           switchOperatorsOff = true;
+          toggleClear = false;
     }
 
     else if(event.target.id === 'per') {   
           operator1 = 'per';
           switchOperatorsOff = true;
+          toggleClear = false;
     }
 
     else {
           operator1 = 'minus';
           switchOperatorsOff = true;
+          toggleClear = false;
     }
 }
 }))
 
 
 
-// THIS PART MAKES THE RESULT DISPLAY WHEN EQUAL IS
-// PRESSED
+
 
 
 equal.addEventListener('mousedown', function(){
@@ -295,16 +295,7 @@ equal.addEventListener('mousedown', function(){
     console.log('second number is ' + b);
     toggleOperator = false;
 
-    if(isNaN(a)) {
-        display.textContent = '';
-        a = null;
-        b = null;
-        operator1 = '';
-        operator = '';
-    }
-
-
-    if(equalActive == true) {
+    if(equalActive == true && toggleClear == false) {
 
     
     if(operator1 === 'plus') {
@@ -312,7 +303,7 @@ equal.addEventListener('mousedown', function(){
         result = operate(a,plus,b);
         console.log('result is ' + result);
         if(!Number.isInteger(result)) {
-            display.textContent = result.toFixed(3);
+            display.textContent = result.toFixed(4);
             equalActive=false;
         } else if(result > 9999999999999) {
             display.textContent = 'nope';
@@ -327,14 +318,14 @@ equal.addEventListener('mousedown', function(){
     else if(operator1 === 'divide') {
        
         if (b === 0) {
-            alert('Nope! You can\'t divide by 0. Press \'AC\' to start again!    💩💩💩💩💩💩💩');
-        
+            alert('You can\'t divide by 0. Press AC to start again.');
+            
         }
         result = operate(a,division,b);
         console.log('result is ' + result);
        
         if(!Number.isInteger(result)) {
-            display.textContent = result.toFixed(3);
+            display.textContent = result.toFixed(4);
             equalActive=false;
         } else if(result > 9999999999999) {
             display.textContent = 'nope';
@@ -350,7 +341,7 @@ equal.addEventListener('mousedown', function(){
         result = operate(a,per,b);
         console.log('result is ' + result);  
         if(!Number.isInteger(result)) {
-            display.textContent = result.toFixed(3);
+            display.textContent = result.toFixed(4);
             equalActive=false;
         } else if(result > 9999999999999) {
             display.textContent = 'nope';
@@ -365,7 +356,7 @@ equal.addEventListener('mousedown', function(){
     result = operate(a,minus,b);
     console.log('result is ' + result);
     if(!Number.isInteger(result)) {
-        display.textContent = result.toFixed(3);
+        display.textContent = result.toFixed(4);
         equalActive=false;
     } else if(result > 9999999999999) {
         display.textContent = 'nope';
