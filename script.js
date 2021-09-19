@@ -1,10 +1,25 @@
 
 
 const display = document.querySelector('#display');
+const plus = document.querySelector('#plus');
+const per = document.querySelector('#per');
+const minus = document.querySelector('#minus');
+const division = document.querySelector('#divide');
 const equal = document.querySelector('#equal');
+const one = document.querySelector('#one');
+const two = document.querySelector('#two');
+const three = document.querySelector('#three');
+const four = document.querySelector('#four');
+const five = document.querySelector('#five');
+const six = document.querySelector('#six');
+const seven = document.querySelector('#seven');
+const eight = document.querySelector('#eight');
+const nine = document.querySelector('#nine');
+const zero = document.querySelector('#zero');
 const dot = document.querySelector('#dot');
 const clear = document.querySelector('#clear');
 const deleteBtn = document.querySelector('#delete');
+
 
 const operators = document.querySelectorAll('#operators button');
 let toggleOperator;
@@ -15,7 +30,7 @@ let switchOperatorsOff;
 const digits = document.querySelectorAll('#digits button');
 
 digits.forEach(button => 
-    button.addeListener('mousedown', function(e) {
+    button.addEventListener('mousedown', function(e) {
 
         
 
@@ -36,34 +51,34 @@ digits.forEach(button =>
         }
 
        
-        if(e.target.id === '1') {
+        if(e.target === one) {
             display.textContent = display.textContent.concat(1);
         }
-        if(e.target.id === '2') {
+        if(e.target === two) {
             display.textContent = display.textContent.concat(2);
         }
-        if(e.target.id === '3') {
+        if(e.target === three) {
             display.textContent = display.textContent.concat(3);
         }
-        if(e.target.id === '4') {
+        if(e.target === four) {
             display.textContent = display.textContent.concat(4);
         }
-        if(e.target.id === '5') {
+        if(e.target === five) {
             display.textContent = display.textContent.concat(5);
         }
-        if(e.target.id === '6') {
+        if(e.target === six) {
             display.textContent = display.textContent.concat(6);
         }
-        if(e.target.id === '7') {
+        if(e.target === seven) {
             display.textContent = display.textContent.concat(7);
         }
-        if(e.target.id === '8') {
+        if(e.target === eight) {
             display.textContent = display.textContent.concat(8);
         }
-        if(e.target.id === '9') {
+        if(e.target === nine) {
             display.textContent = display.textContent.concat(9);
         }
-        if(e.target.id === '0') {
+        if(e.target === zero) {
             display.textContent = display.textContent.concat(0);
         }
         if(e.target === dot && !display.textContent.includes('.')) {
@@ -73,7 +88,7 @@ digits.forEach(button =>
     }
     }));
   
- clear.addeListener('mousedown', function() {
+ clear.addEventListener('mousedown', function() {
 
      display.textContent = '';
      a === false;
@@ -88,7 +103,7 @@ digits.forEach(button =>
     
  });
 
- deleteBtn.addeListener('mousedown', function() {
+ deleteBtn.addEventListener('mousedown', function() {
     let str = display.textContent;
    let newStr = str.substring(0,str.length -1);
    display.textContent = newStr;
@@ -106,7 +121,7 @@ digits.forEach(button =>
 })
 
  
- window.addeListener('keydown', function(e) {
+ window.addEventListener('keydown', function(e) {
 
     switchOperatorsOff = false;
 
@@ -126,7 +141,7 @@ digits.forEach(button =>
      {display.textContent = display.textContent.concat(e.key);}
  });
 
- window.addeListener('keydown', function(e) {
+ window.addEventListener('keydown', function(e) {
    if(e.key == 'Backspace') {
     let str = display.textContent;
     let newStr = str.substring(0,str.length -1);
@@ -147,6 +162,8 @@ digits.forEach(button =>
 );
 
 //try experiment
+
+
 
 
 function add(a,b) {
@@ -196,7 +213,7 @@ let operator1;
 
 
 
-operators.forEach(operator => operator.addeListener('mousedown', function(e) {
+operators.forEach(operator => operator.addEventListener('mousedown', function(event) {
     b = parseFloat(display.textContent);
     
 if(switchOperatorsOff == false) {
@@ -241,23 +258,22 @@ a = parseFloat(display.textContent);
 console.log('first number is ' + a);
 display.textContent = '';
 
-    if(e.target.id === 'plus') {
+    if(event.target.id === 'plus') {
         
           operator1 = 'plus';    
           switchOperatorsOff = true; 
           toggleClear = false;
           equalActive = false;
     }
-}
 
-    else if(e.target.id === 'divide') {      
+    else if(event.target.id === 'divide') {      
           operator1 = 'divide';
           switchOperatorsOff = true;
           toggleClear = false;
           equalActive = false;
     }
 
-    else if(e.target.id === 'per') {   
+    else if(event.target.id === 'per') {   
           operator1 = 'per';
           switchOperatorsOff = true;
           toggleClear = false;
@@ -271,18 +287,14 @@ display.textContent = '';
           equalActive = false;
     }
 }
-))
+}))
 
 
 
-    let a = display.textContent;
-    let operator = e.target.innerHTML;
-    display.textContent = a.concat(' ' + operator);
-    let b = 34;
 
 
 
-equal.addeListener('mousedown', function(){
+equal.addEventListener('mousedown', function(){
 
    
 
